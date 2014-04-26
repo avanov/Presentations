@@ -7,6 +7,6 @@ python:
 
 # --source specifies what packages to cover, you probably want to use that option
 script:
-    coverage run --source=Presentations setup.py test
+    coverage run --source=presentations setup.py test
 
 after_success: coveralls
