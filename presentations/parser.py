@@ -6,6 +6,10 @@ from plim.util import joined
 
 PARSE_CONFIG_RE = re.compile('config\s+(?P<section>.+)', re.IGNORECASE)
 
+PARSE_SLIDE_RE = re.compile('slide', re.IGNORECASE)
+PARSE_FRAGMENT_RE = re.compile('fragment', re.IGNORECASE)
+PARSE_CODE_RE = re.compile('code', re.IGNORECASE)
+
 
 def parse_config(indent_level, current_line, matched, source, syntax):
     section = matched.group('section')
@@ -26,7 +30,34 @@ def parse_config(indent_level, current_line, matched, source, syntax):
     return joined(buf), tail_indent, tail_line, source
 
 
+def parse_slide(indent_level, current_line, matched, source, syntax):
+    current_line = current_line.replace('slide', 'section')
+    processed_tag, tail_indent, tail_line, source = lexer.parse_tag_tree(indent_level, current_line, matched, source, syntax)
+    return processed_tag, tail_indent, tail_line, source
+
+
+def parse_fragment(indent_level, current_line, matched, source, syntax):
+    current_line = '.{}'.format(current_line)
+    processed_tag, tail_indent, tail_line, source = lexer.parse_tag_tree(indent_level, current_line, matched, source, syntax)
+    return processed_tag, tail_indent, tail_line, source
+
+
+def parse_code(indent_level, current_line, matched, source, syntax):
+    _, __, components, tail, source = lexer.extract_tag_line(current_line, source, syntax)
+    parsed_data, tail_indent, tail_line, source = lexer.parse_explicit_literal_no_embedded(
+        indent_level,
+        lexer.LITERAL_CONTENT_PREFIX,
+        matched,
+        source,
+        syntax
+    )
+    print (components)
+    return current_line, tail_indent, tail_line, source
+
 
 PARSERS = (
     (PARSE_CONFIG_RE, parse_config),
+    (PARSE_SLIDE_RE, parse_slide),
+    (PARSE_FRAGMENT_RE, parse_fragment),
+    (PARSE_CODE_RE, parse_code),
 )

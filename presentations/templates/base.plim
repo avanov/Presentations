@@ -13,6 +13,9 @@
         result = highlight(code, lexer, formatter)
     == result
 
+---
+    CONFIG = {}
+
 doctype html
 html lang="en"
 
@@ -72,7 +75,11 @@ html lang="en"
                 }
 
 	body
-        .reveal: .slides = next.body()
+        .reveal: .slides
+
+
+{{{ presentation_slides }}}
+
 
 		script src="lib/js/head.min.js"
 		script src="js/reveal.min.js"
