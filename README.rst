@@ -1,6 +1,9 @@
 Presentations
 =============
 
+Presentations using reveal.js.
+
+
 Example
 -------
 
