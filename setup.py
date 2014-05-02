@@ -73,5 +73,8 @@ setup(name='Presentations',
           'test': PyTest,
       },
       entry_points={
-      }
+          'console_scripts': [
+              'present = presentations.cli:present',
+          ]
+      },
     )
