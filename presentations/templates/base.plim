@@ -26,13 +26,16 @@
 ---
     CONFIG = {}
 
+
+{{{ presentation_slides }}}
+
 doctype html
 html lang="en"
 
 	head
 		meta charset="utf-8"
 
-		title RevealJS
+		title = CONFIG['presentation'].get('title', '')
 
 		meta name="description" content="A framework for easily creating beautiful presentations using HTML"
 		meta name="author" content="Hakim El Hattab"
@@ -82,11 +85,7 @@ html lang="en"
                 }
 
 	body
-        .reveal: .slides
-
-
-{{{ presentation_slides }}}
-
+        .reveal: .slides = presentation()
 
 		script = inline_reveal_file("lib/js/head.min.js")
 		script = inline_reveal_file("js/reveal.min.js")
@@ -114,6 +113,8 @@ html lang="en"
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 				]
 			});
+
+
 		script = inline_reveal_file("plugin/highlight/highlight.js")
 		script = inline_reveal_file("plugin/zoom-js/zoom.js")
 		script = inline_reveal_file("plugin/notes/notes.js")

@@ -6,6 +6,7 @@ from plim.util import joined
 
 PARSE_CONFIG_RE = re.compile('config\s+(?P<section>.+)', re.IGNORECASE)
 
+PARSE_PRESENTATION = re.compile('presentation', re.IGNORECASE)
 PARSE_SLIDE_RE = re.compile('slide', re.IGNORECASE)
 PARSE_FRAGMENT_RE = re.compile('fragment', re.IGNORECASE)
 PARSE_CODE_RE = re.compile('code', re.IGNORECASE)
@@ -28,6 +29,11 @@ def parse_config(indent_level, current_line, matched, source, syntax):
     python_config = "CONFIG['{section}'] = {config}".format(section=section, config=python_config)
     buf = ['<%\n', python_config, '\n%>']
     return joined(buf), tail_indent, tail_line, source
+
+
+def parse_presentation(indent_level, current_line, matched, source, syntax):
+    matched = syntax.PARSE_DEF_BLOCK_RE.match('-def presentation()')
+    return lexer.parse_def_block(indent_level, current_line, matched, source, syntax)
 
 
 def parse_slide(indent_level, current_line, matched, source, syntax):
@@ -57,6 +63,7 @@ def parse_code(indent_level, current_line, matched, source, syntax):
 
 PARSERS = (
     (PARSE_CONFIG_RE, parse_config),
+    (PARSE_PRESENTATION, parse_presentation),
     (PARSE_SLIDE_RE, parse_slide),
     (PARSE_FRAGMENT_RE, parse_fragment),
     (PARSE_CODE_RE, parse_code),

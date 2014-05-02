@@ -11,8 +11,7 @@ def present(args=None, stdout=None):
         base_path = resource_filename('presentations', 'templates/base.plim')
         with codecs.open(base_path, mode='r', encoding='utf-8') as base_file:
             base_template = base_file.read()
-            spaces = ' ' * 50
-            presentation_template = ''.join(['{}{}'.format(spaces, template_line) for template_line in presentation_file])
+            presentation_template = presentation_file.read()
             base_template = base_template.replace('{{{ presentation_slides }}}', presentation_template)
             template.write(base_template)
             template.flush()
