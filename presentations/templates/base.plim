@@ -46,7 +46,7 @@ html lang="en"
 		meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 
         style = inline_reveal_file("css/reveal.min.css")
-        style#theme = inline_reveal_file("css/theme/serif.css")
+        style#theme = inline_reveal_file("css/theme/{theme}.css".format(theme=CONFIG['presentation'].get('theme', 'default')))
 
 		/ If the query includes 'print-pdf', include the PDF print sheet
 		script
