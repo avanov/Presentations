@@ -1,11 +1,19 @@
 .[oa]
 *~
 .py[co]
+__pycache__/
 .doit.db
 .idea/
+.cache/
+.pytest_cache/
+.DS_Store
 
+.venv*/
+.local/
+example/
 build/
 dist/
+out/
 *.egg-info/
 
 docs/_build
@@ -19,6 +27,13 @@ docs/_build
 
 # Ignore vagrant box meta files
 .vagrant/
+*-console.log
 
 # Compass/Sass cache
 .sass-cache/
+
+# do not track contents of private directories
+*_priv/
+
+# ansible temporary files
+deploy/*.retry
