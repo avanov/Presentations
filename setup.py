@@ -72,7 +72,7 @@ setup(name='Presentations',
       },
       entry_points={
           'console_scripts': [
-              'present = presentations.cli:present',
+              'present = presentations.cli.main:main',
           ]
       },
     )
