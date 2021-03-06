@@ -43,7 +43,7 @@ def parse_slide(indent_level, current_line, matched, source, syntax):
 
 
 def parse_fragment(indent_level, current_line, matched, source, syntax):
-    current_line = '.{}'.format(current_line)
+    current_line = f'.{current_line}'
     processed_tag, tail_indent, tail_line, source = lexer.parse_tag_tree(indent_level, current_line, matched, source, syntax)
     return processed_tag, tail_indent, tail_line, source
 
@@ -57,7 +57,6 @@ def parse_code(indent_level, current_line, matched, source, syntax):
         source,
         syntax
     )
-    print (components)
     return current_line, tail_indent, tail_line, source
 
 
