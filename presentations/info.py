@@ -1,0 +1,2 @@
+DISTRIBUTION_NAME = 'Presentations'
+PACKAGE_NAME      = DISTRIBUTION_NAME.lower()
