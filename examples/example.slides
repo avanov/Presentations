@@ -1,6 +1,6 @@
 config presentation
     title = Presentation Title
-    theme = moon
+    theme = serif
 
 config revealjs
     controls = true
@@ -15,5 +15,13 @@ presentation
         h2 Slide 1 Caption
 
     slide
-        h2 Slide 2 Caption
-        fragment: h4 Fragment
+        slide
+            h2 Python Code Snippets
+            == self.code_block('python', 'examples/code/example-python.py')
+
+        slide
+            h2 Haskell Code Snippets
+            == self.code_block('haskell', 'examples/code/example-haskell.hs')
+
+    slide
+        h5 https://github.com/avanov/Presentations

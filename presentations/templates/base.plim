@@ -18,7 +18,7 @@
     ---
         lexer = get_lexer_by_name(language, stripall=True)
         formatter = HtmlFormatter(linenos=linenos, cssclass="source")
-        with codecs.open('code/{}'.format(code_id), 'rb', 'utf-8') as f:
+        with codecs.open(code_id, 'rb', 'utf-8') as f:
             code = f.read()
         result = highlight(code, lexer, formatter)
     == result
