@@ -45,7 +45,7 @@ class PyTest(TestCommand):
 # ----------------------------
 
 setup(name='Presentations',
-      version='0.0.1',
+      version='0.0.2',
       description='Presentations using reveal.js',
       long_description=README,
       classifiers=[

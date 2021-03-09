@@ -20,7 +20,7 @@ Presentations using reveal.js.
 Example
 -------
 
-.. code-block:: plim
+.. code::
 
     config presentation
       title = Presentation Title
